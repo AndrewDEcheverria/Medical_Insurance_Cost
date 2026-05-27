@@ -48,4 +48,13 @@ ORDER BY avg_medical_cost DESC;
 
 -- 4
 
-SELECT customer_id,
+SELECT 
+customer_id,
+region,
+annual_medical_cost_usd,
+
+RANK() OVER(
+	PARTITION BY region
+	ORDER BY annual_medical_cost_usd DESC
+)AS regional_cost_rank
+FROM medical_insurance_cost;
