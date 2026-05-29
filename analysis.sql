@@ -52,9 +52,22 @@ SELECT
 customer_id,
 region,
 annual_medical_cost_usd,
-
 RANK() OVER(
 	PARTITION BY region
 	ORDER BY annual_medical_cost_usd DESC
 )AS regional_cost_rank
 FROM medical_insurance_cost;
+
+--5
+
+SELECT
+	exercise_level,
+	ROUND(AVG(bmi), 2) as avg_bmi,
+    ROUND(AVG(doctor_visits_pe), 2) as avg_doctor_visits_per_year,
+    ROUND(AVG(hospitalizations), 2)as avg_hospitalizations
+from medical_insurance_cost_dataset
+GROUP BY exercise_level;
+
+-- 6 
+
+
